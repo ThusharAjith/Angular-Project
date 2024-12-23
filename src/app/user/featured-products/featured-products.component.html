@@ -1,0 +1,55 @@
+<app-nav-bar></app-nav-bar>
+<section class="py-20 bg-gray-900 h-screen bg-cover" id="shop">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-12 text-white">Featured Shoes</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Loop through products using ngFor -->
+      <div 
+        *ngFor="let product of products" 
+        class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+      >
+        <img 
+          [src]="product.imageUrl" 
+          alt="Product" 
+          class="w-full h-48 object-cover rounded-lg mb-6"
+        >
+        <h3 class="text-2xl font-semibold mb-2 text-white">{{ product.name }}</h3>
+        <p class="text-lg text-gray-400 mb-4">${{ product.price }}</p>
+        
+        <!-- buttons-->
+        <div class="mt-auto flex flex-col gap-2">
+          <button 
+            (click)="isAdmin ? editProduct(product) : openModal(product)" 
+            class="text-blue-400 hover:underline"
+          >
+            {{ isAdmin ? 'Edit Product' : 'View Product' }}
+          </button>
+          <button *ngIf="!isAdmin" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- for zoomed-in image (for both user and admin) -->
+  <div 
+    *ngIf="selectedProduct" 
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" 
+    (click)="closeModal()"
+  >
+    <div class="relative" (click)="$event.stopPropagation()"> <!-- prevent closing when clicking inside the picture -->
+      <button 
+        (click)="closeModal()" 
+        class="absolute top-4 right-4 text-white text-2xl"
+      >
+        &times;
+      </button>
+      <img 
+        [src]="selectedProduct.imageUrl" 
+        alt="Zoomed Product" 
+        class="w-96 h-auto object-cover transform scale-110 transition-transform duration-300"
+      />
+    </div>
+  </div>
+</section>

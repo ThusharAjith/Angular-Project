@@ -1,0 +1,45 @@
+<nav class="bg-gray-800">
+    <div class="mx-auto w-full px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex shrink-0 items-center">
+            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <div *ngIf="!isAdmin" class="px-3 py-2 text-sm font-medium text-white">[Logged in as User]</div>
+              <div *ngIf="isAdmin" class="px-3 py-2 text-sm font-medium text-white">[Logged in as Admin]</div>
+              <!-- Main Router Links for Navbar Navigation-->
+              <a *ngIf="!isAdmin" routerLink="/userhome" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+              <a *ngIf="isAdmin" routerLink="/adminhome" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+              <a *ngIf="!isAdmin" routerLink="/featured" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Featured Products</a>
+              <a *ngIf="isAdmin" routerLink="/adminfeatured" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Featured Products</a>
+  
+              <!-- Dynamic Links for User/Admin -->
+              <a *ngIf="isAdmin" routerLink="/edit-about-us" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Edit About Us</a>
+              <a *ngIf="!isAdmin" routerLink="/about" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
+  
+              <a *ngIf="isAdmin" routerLink="/edit-orders" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Edit Orders</a>
+              <a *ngIf="!isAdmin" routerLink="/contact" routerLinkActive="active" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div class="relative ml-3">
+            <button (click)="toggleProfileMenu()" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button">
+              <img class="h-8 w-8 rounded-full" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKUAAACUCAMAAADF0xngAAAAMFBMVEXk5ueutLfo6uu7wMOrsbTd4OGnrrHLz9HY29zh4+TGyszT1tizubzCx8m3vb/Q09VRU5zBAAAD2klEQVR4nO2c2ZKsIAxAJSyCLP7/317U3qYXGwgG+xan5mEeT0UCAUIPQ6fT6XQ6nU6n0+l0Op3fBmAYzPq3/HdGope2o+cLfhqtHM4nCqC9Y0zcYM55eaqIwiAnpgR7QigxytN4gvTsRfEiyqZzeIL56HjxPIOm3nNcPZ1u7Qn+i+NK43CakCLJBDcNJaVLkoyawTQLp0lT3DRbTfIyXXLRlE0kjcuxjGOzRTCBJ47Jm2aDTIdR5UlGzZlcUuc6Rhz1fJQ4UT4Fk3howlggyZiiXSuhSJIxTiqZtHq/YyYMpsybKu8IwmAWjspVU9NploaSNM1l9oT+oEk1Z5bnzgJV/pROQxtU+SNRlo6mgkNk+ArN+gMeJUlVGXGcpSeRLF54LpY06YO0ZI7EsqT+/RNMCsmiKv0RRWJpcRPRr1hSrOTdsiI/keNoS0ZiiZ3VA4mlCShJqg0astqYSCSxlZulqS8tytJR7XVxOwqiTSSg0sdT7SFnRDCJhuWA20QKuuOs8mMDwsN1TJZT3qeU5g/RBnIDbOl5FuHBYNRMvYB8DiXt8X9ZmhMm+EZJmgvKU/WVzFvIVZL0hmIF8r+5a9Bokn1ASHwldWXK0qQflBtZ5+tibNUSkaGpWrbBJH/0Rp97Iy2FBCMrKj9o6u9rpQjNe90AdtvclkA2y5tHQPPPFZJQvnmX2wXQ4W08hWC8+ce+s3SyhqWB9U8UGT9J8+UNAKNHzpRa222VioqjbNfbtgcASGvnedYSTtUS/Ag80drnmUVJ63mctkbwtRV8ttqcxDUOR6PnaRmQ25C8Zfc6OBULPn5+07DJPsZJz547ocTOtB5tXfCjbSVqtzb6vXXnvv4wxmdD2ygKg5y9eG2j/6KqwqjJJicAGz9z2U7X8ZHCc32MgDplFfzo840YRl8WxUdNwecjRyhIjovj1ZOF42p3GRA9WS+i9ogBuvPwpNCT199mwFjXcdFkvm44Y5lb23HzrNlbdEAgr57VwglF/dSpmqLOtgi+PjNCeta4PY1f+2BEwEdzqjdHftREH2yi2laJNLPfnZRqMkyqE0kuFEcT16Wchyi9NgeCxHnULJPE3IKXaBbds2S9fauiWXKCeOyK8478qxbIuyapQ24GIbtxCsld0o8sg/bI2l5S5/cV4XJGJu49BwKVsRdqkjobGXN7wd13NZKDiX10giFjBSIshV5JbTjCvTJCkrpONsydlUTLhrkTEYmfvG0o0y5X0b39WJLedcLUVpKFlMqIat/4kaSniAbXjl7BMqUwSv49kqNI6hyWvDHBJsTy5WqWnBTJTqfzP/EPdj8xiRLXnHUAAAAASUVORK5CYII=" alt="">
+            </button>
+            <div *ngIf="isProfileMenuOpen" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
+              <a *ngIf="!isAdmin" routerLink="/profile" routerLinkActive="active" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
+              <a *ngIf="isAdmin" routerLink="/adminprofile" routerLinkActive="active" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
+              <a *ngIf="!isAdmin" routerLink="/cart" routerLinkActive="active" class="block px-4 py-2 text-sm text-gray-700">Your Cart</a>
+              <a *ngIf="isAdmin" routerLink="/edit-orders" routerLinkActive="active" class="block px-4 py-2 text-sm text-gray-700">Edit Orders</a>
+              <a href="/" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

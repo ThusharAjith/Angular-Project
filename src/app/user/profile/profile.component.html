@@ -1,0 +1,54 @@
+<app-nav-bar></app-nav-bar>
+<div class="bg-gray-900 min-h-screen">
+    <div class="py-32 ">
+        <h3 *ngIf="isAdmin" class="leading-6 text-4xl text-white text-center">
+            Admin Profile
+        </h3>
+        <h3 *ngIf="!isAdmin" class="leading-6 text-4xl text-white text-center">
+            User Profile
+        </h3>
+        <p *ngIf="isAdmin" class="mt-3 text-center text-lg text-gray-500">
+            This is some information about the admin.
+        </p>
+        <p *ngIf="!isAdmin" class="mt-3 text-center text-lg text-gray-500">
+            This is some information about the user.
+        </p>
+    </div>
+    <!--EXAMPLE OF HOW THE PROFILE WILL LOOK-->
+    <div class="px-4 py-5 text-center">
+        <dl>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-lg font-medium text-white">
+                    Full name
+                </dt>
+                <dd class="mt-1 text-lg text-white sm:mt-0 sm:col-span-2">
+                    Thushar
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-lg font-medium text-white">
+                    Mail
+                </dt>
+                <dd class="mt-1 text-lg text-white sm:mt-0 sm:col-span-2">
+                    thusharajithgmail.com
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-lg font-medium text-white">
+                    Phone number
+                </dt>
+                <dd class="mt-1 text-lg text-white sm:mt-0 sm:col-span-2">
+                    123456789
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-lg font-medium text-white">
+                    Address
+                </dt>
+                <dd class="mt-1 text-lg text-white sm:mt-0 sm:col-span-2">
+                    Chennai, Tamil Nadu, India
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>

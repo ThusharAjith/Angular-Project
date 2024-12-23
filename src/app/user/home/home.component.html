@@ -1,0 +1,35 @@
+<app-nav-bar></app-nav-bar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoe Retail Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <!-- Hero Section -->
+  <section class="relative bg-cover bg-center h-screen">
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    
+    <!-- Content -->
+    <div class="container mx-auto text-center relative pt-64">
+      <h1 class="text-5xl sm:text-6xl font-bold mb-6">Step into Style</h1>
+      <p class="text-lg sm:text-2xl mb-8">Explore the latest trends in footwear and find your perfect pair today!</p>
+      
+      <!-- Dynamic button for User and Admin -->
+      <a *ngIf="!isAdmin" routerLink="/shopnow" routerLinkActive="active"
+         class="bg-gray-900 hover:bg-gray-700 text-white py-3 px-6 rounded-full text-lg font-semibold transition duration-300">
+        Shop Now
+      </a>
+      <a *ngIf="isAdmin" routerLink="/adminfeatured" routerLinkActive="active"
+         class="bg-gray-900 hover:bg-gray-700 text-white py-3 px-6 rounded-full text-lg font-semibold transition duration-300">
+        View Products
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
