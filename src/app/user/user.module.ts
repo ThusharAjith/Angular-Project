@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 import { AdminModule } from "../admin/admin.module";
 
 // Routes are being defined here
@@ -37,6 +38,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    FormsModule
 ],
   exports: [
     NavBarComponent,
@@ -47,6 +49,7 @@ const routes: Routes = [
     CartComponent,
     ProfileComponent,
     FooterComponent,
+    FormsModule,
   ],
 })
 export class UserModule {}

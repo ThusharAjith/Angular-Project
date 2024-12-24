@@ -1,7 +1,55 @@
 <app-nav-bar></app-nav-bar>
-<section class="py-20 bg-gray-900 h-screen bg-cover" id="shop">
+<section class="py-20 bg-gray-900 min-h-screen bg-cover" id="shop">
   <div class="container mx-auto text-center">
     <h2 class="text-4xl font-bold mb-12 text-white">Featured Shoes</h2>
+
+    <!-- Admin Add Product Form -->
+    <div *ngIf="isAdmin" class="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+      <h3 class="text-xl font-semibold text-white mb-4">Add New Product</h3>
+      <form (submit)="addProduct()">
+        <div class="mb-4">
+          <label for="name" class="block text-white">Product Name</label>
+          <input 
+            id="name" 
+            type="text" 
+            [(ngModel)]="newProduct.name" 
+            name="name" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="price" class="block text-white">Price</label>
+          <input 
+            id="price" 
+            type="number" 
+            [(ngModel)]="newProduct.price" 
+            name="price" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="imageUrl" class="block text-white">Image URL</label>
+          <input 
+            id="imageUrl" 
+            type="text" 
+            [(ngModel)]="newProduct.imageUrl" 
+            name="imageUrl" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <button 
+          type="submit" 
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Add Product
+        </button>
+      </form>
+    </div>
+
+    <!-- Display Products -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       <!-- Loop through products using ngFor -->
       <div 
@@ -16,7 +64,7 @@
         <h3 class="text-2xl font-semibold mb-2 text-white">{{ product.name }}</h3>
         <p class="text-lg text-gray-400 mb-4">${{ product.price }}</p>
         
-        <!-- buttons-->
+        <!-- Buttons-->
         <div class="mt-auto flex flex-col gap-2">
           <button 
             (click)="isAdmin ? editProduct(product) : openModal(product)" 
@@ -32,13 +80,13 @@
     </div>
   </div>
 
-  <!-- for zoomed-in image (for both user and admin) -->
+  <!-- Zoomed-in Image (for both user and admin) -->
   <div 
     *ngIf="selectedProduct" 
     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" 
     (click)="closeModal()"
   >
-    <div class="relative" (click)="$event.stopPropagation()"> <!-- prevent closing when clicking inside the picture -->
+    <div class="relative" (click)="$event.stopPropagation()"> <!-- Prevent closing when clicking inside the picture -->
       <button 
         (click)="closeModal()" 
         class="absolute top-4 right-4 text-white text-2xl"
