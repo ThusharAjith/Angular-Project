@@ -23,6 +23,7 @@ import { SelectionComponent } from './selection/selection.component';
     SelectionComponent
   ],
   imports: [
+    AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,
     UserModule,

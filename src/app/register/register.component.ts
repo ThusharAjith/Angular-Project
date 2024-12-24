@@ -7,26 +7,47 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  fullName: string = '';
   email: string = '';
-  password:string = '';
+  password: string = '';
+  phoneNumber: string = '';
+  address: string = '';
 
-  constructor(private auth: AuthService){}
-ngOnInit(): void{}
+  constructor(private auth: AuthService) {}
 
-register(){
-  if(this.email == ''){
-    alert('Please enter email');
-  return;
+  ngOnInit(): void {}
+
+  register() {
+    if (this.fullName.trim() === '') {
+      alert('Please enter your full name');
+      return;
+    }
+
+    if (this.email.trim() === '') {
+      alert('Please enter your email');
+      return;
+    }
+
+    if (this.password.trim() === '') {
+      alert('Please enter your password');
+      return;
+    }
+
+    if (this.phoneNumber.trim() === '') {
+      alert('Please enter your phone number');
+      return;
+    }
+
+    if (this.address.trim() === '') {
+      alert('Please enter your address');
+      return;
+    }
+
+    this.auth.register(this.email, this.password, this.fullName, this.phoneNumber, this.address);
+    this.email = '';
+    this.password = '';
+    this.fullName = '';
+    this.phoneNumber = '';
+    this.address = '';
   }
-
-  if(this.password == ''){
-    alert('Please enter password')
-    return;
-  }
-
-  this.auth.register(this.email, this.password);
-  this.email= '';
-  this.password = '';
-}
-
 }
