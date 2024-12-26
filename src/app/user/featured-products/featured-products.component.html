@@ -72,7 +72,11 @@
           >
             {{ isAdmin ? 'Edit Product' : 'View Product' }}
           </button>
-          <button *ngIf="!isAdmin" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">
+          <button 
+            *ngIf="!isAdmin" 
+            (click)="addToCart(product)" 
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300"
+          >
             Add to Cart
           </button>
         </div>

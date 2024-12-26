@@ -91,7 +91,13 @@ export class AuthService {
   }
 
   // Register method
-  register(email: string, password: string, fullName:string, phoneNumber:string, address:string ) {
+  register(
+    email: string,
+    password: string,
+    fullName: string,
+    phoneNumber: string,
+    address: string
+  ) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(
       (userCredential) => {
         const user = userCredential.user;
@@ -137,5 +143,10 @@ export class AuthService {
         alert(err.message);
       }
     );
+  }
+
+  // Method to get the current logged-in user
+  getCurrentUser() {
+    return this.fireauth.authState; // Returns an Observable of the current user state
   }
 }

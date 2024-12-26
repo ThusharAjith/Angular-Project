@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-featured-products',
@@ -20,7 +22,11 @@ export class FeaturedProductsComponent {
 
   @Input() isAdmin: boolean = false; // To determine if the current user is an admin
   
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService, 
+    private authService: AuthService, 
+    private firestore: AngularFirestore
+  ) {}
 
   ngOnInit() {
     this.loadProducts();
@@ -61,6 +67,29 @@ export class FeaturedProductsComponent {
     } else {
       console.error('All fields are required');
     }
+  }
+
+  // Method to add a product to the cart
+  addToCart(product: Product) {
+    this.authService.getCurrentUser().subscribe((user) => {
+      if (user && user.uid) {
+        const cartItem = {
+          name: product.name,
+          price: product.price,
+          userId: user.uid, // Associate product with the current user
+          productId: product.id, // Optionally store the product ID
+        };
+
+        // Add the cart item to the 'carts' collection in Firestore
+        this.firestore.collection('carts').add(cartItem).then(() => {
+          console.log('Item added to cart');
+        }).catch(error => {
+          console.error('Error adding item to cart: ', error);
+        });
+      } else {
+        console.error('No user is logged in');
+      }
+    });
   }
 
   // Reset form fields
