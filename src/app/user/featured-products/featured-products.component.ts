@@ -39,6 +39,7 @@ export class FeaturedProductsComponent {
     if (this.newProduct.name && this.newProduct.price && this.newProduct.imageUrl) {
       this.productService.addProduct(this.newProduct).then(() => {
         console.log('Product added successfully');
+        alert('Prodjct added successfully')
         this.loadProducts();  // Reload products
         this.resetProductForm(); // Reset form
       }).catch(error => {
@@ -82,6 +83,7 @@ export class FeaturedProductsComponent {
         imageUrl: this.editedProduct.imageUrl,
       }).then(() => {
         console.log('Product updated successfully');
+        alert('Product has been updated!')
         this.loadProducts();  // Reload products to reflect changes
         this.closeModal(); // Close the modal after saving
       }).catch(error => {
@@ -106,6 +108,7 @@ export class FeaturedProductsComponent {
         // Add the cart item to the 'carts' collection in Firestore
         this.firestore.collection('carts').add(cartItem).then(() => {
           console.log('Item added to cart');
+          alert('Item added to cart');
         }).catch(error => {
           console.error('Error adding item to cart: ', error);
         });

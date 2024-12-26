@@ -63,6 +63,7 @@ export class CartComponent implements OnInit {
       .delete()
       .then(() => {
         console.log('Cart item deleted successfully.');
+        alert('Item removed from cart!')
         this.authService.getCurrentUser().subscribe((user) => {
           if (user && user.uid) {
             this.loadCartItems(user.uid);
