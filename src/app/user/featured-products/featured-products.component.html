@@ -84,24 +84,58 @@
     </div>
   </div>
 
-  <!-- Zoomed-in Image (for both user and admin) -->
-  <div 
-    *ngIf="selectedProduct" 
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" 
-    (click)="closeModal()"
-  >
-    <div class="relative" (click)="$event.stopPropagation()"> <!-- Prevent closing when clicking inside the picture -->
+  <!-- Edit Product Modal -->
+  <div *ngIf="editedProduct" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" (click)="closeModal()">
+    <div class="relative bg-gray-800 p-6 rounded-lg" (click)="$event.stopPropagation()"> 
       <button 
         (click)="closeModal()" 
         class="absolute top-4 right-4 text-white text-2xl"
       >
         &times;
       </button>
-      <img 
-        [src]="selectedProduct.imageUrl" 
-        alt="Zoomed Product" 
-        class="w-96 h-auto object-cover transform scale-110 transition-transform duration-300"
-      />
+
+      <h3 class="text-xl font-semibold text-white mb-4">Edit Product</h3>
+      <form (submit)="saveEditedProduct()">
+        <div class="mb-4">
+          <label for="editName" class="block text-white">Product Name</label>
+          <input 
+            id="editName" 
+            type="text" 
+            [(ngModel)]="editedProduct.name" 
+            name="name" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="editPrice" class="block text-white">Price</label>
+          <input 
+            id="editPrice" 
+            type="number" 
+            [(ngModel)]="editedProduct.price" 
+            name="price" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="editImageUrl" class="block text-white">Image URL</label>
+          <input 
+            id="editImageUrl" 
+            type="text" 
+            [(ngModel)]="editedProduct.imageUrl" 
+            name="imageUrl" 
+            class="w-full p-2 mt-2 rounded bg-gray-700 text-white"
+            required
+          />
+        </div>
+        <button 
+          type="submit" 
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Save Changes
+        </button>
+      </form>
     </div>
   </div>
 </section>
