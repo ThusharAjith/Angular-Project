@@ -18,7 +18,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  // User login method
+  //userlogin
   userlogin(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       (userCredential) => {
@@ -54,7 +54,7 @@ export class AuthService {
     );
   }
 
-  // Admin login method
+  //admin login
   adminlogin(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       (userCredential) => {
@@ -90,7 +90,7 @@ export class AuthService {
     );
   }
 
-  // Register method
+  //user registration
   register(
     email: string,
     password: string,
@@ -102,7 +102,7 @@ export class AuthService {
       (userCredential) => {
         const user = userCredential.user;
         if (user) {
-          // Add user to Firestore
+          //adding user to firestore
           this.firestore
             .collection('users')
             .doc(user.uid)
@@ -131,7 +131,7 @@ export class AuthService {
     );
   }
 
-  // Logout method
+  //logout
   logout() {
     this.fireauth.signOut().then(
       () => {
@@ -145,8 +145,8 @@ export class AuthService {
     );
   }
 
-  // Method to get the current logged-in user
+  //currently logged in user
   getCurrentUser() {
-    return this.fireauth.authState; // Returns an Observable of the current user state
+    return this.fireauth.authState; //returns observable from the current user state
   }
 }

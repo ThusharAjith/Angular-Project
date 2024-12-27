@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore'; // Import Firestore service
-import { AngularFireAuth } from '@angular/fire/compat/auth'; // Import Firebase Auth service
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,12 +12,12 @@ export class UserdataService {
     private auth: AngularFireAuth
   ) {}
 
-  // get data using user ID (or) UID
+  //get data using userID
   getUserData(): Observable<any> {
     return new Observable(observer => {
       this.auth.currentUser.then(user => {
         if (user) {
-          // fetching data from firestore using UID
+          //fetch data using userID
           this.firestore.collection('users').doc(user.uid).get().subscribe(doc => {
             if (doc.exists) {
               observer.next(doc.data());
