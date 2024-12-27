@@ -23,12 +23,25 @@
         <td>
           <button
             class="bg-red-900 hover:bg-red-700 text-white py-3 px-6 rounded-full text-sm font-semibold transition duration-300"
-            (click)="deleteCartItem(item.id)"
-          >
+            (click)="deleteCartItem(item.id)">
             DELETE
           </button>
         </td>
       </tr>
+      <tr></tr><tr><tr></tr><tr></tr><tr></tr>
+      <tr>
+        <b><i>Total Cost: {{totalCost}}</i></b>
+      </tr>
     </tbody>
   </table>
+
+  <!-- Place Order Button -->
+  <div class="text-center mt-6">
+    <button 
+      class="bg-blue-500 hover:bg-blue-400 text-white px-6 py-3 rounded-full text-lg font-semibold transition duration-300"
+      (click)="placeOrder()"
+      [disabled]="cartItems.length === 0">
+      Place Order
+    </button>
+  </div>
 </div>
