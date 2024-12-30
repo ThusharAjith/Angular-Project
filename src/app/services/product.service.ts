@@ -10,12 +10,12 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  // Fetch products from Firestore
+  //fetch products from firestore
   getProducts(): Observable<Product[]> {
     return this.firestore.collection<Product>('products').valueChanges();
   }
 
-  // Add a product to Firestore
+  //adding product to firestore
   addProduct(product: Product): Promise<void> {
     const id = this.firestore.createId(); // Generate a new unique ID for the product
     return this.firestore.collection('products').doc(id).set({

@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
     // user data to be fetched when the component loads
     this.userdata.getUserData().subscribe(
-      (data) => {
+      (data:any) => {
         this.userData = data;
         this.isLoading = false; // loading is false if the data has been loaded
       },

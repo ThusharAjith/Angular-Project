@@ -20,9 +20,9 @@ export class FeaturedProductsComponent {
     imageUrl: ''
   };
 
-  editedProduct: Product | null = null; // To hold the product being edited
+  editedProduct: Product | null = null; //current product thta is being edited
 
-  @Input() isAdmin: boolean = false; // To determine if the current user is an admin
+  @Input() isAdmin: boolean = false; //is current user an admin?
   
   constructor(
     private productService: ProductService, 
@@ -34,14 +34,14 @@ export class FeaturedProductsComponent {
     this.loadProducts();
   }
 
-   // Method to add a new product (Admin functionality)
+   //adding new product --> admin function
   addProduct() {
     if (this.newProduct.name && this.newProduct.price && this.newProduct.imageUrl) {
       this.productService.addProduct(this.newProduct).then(() => {
         console.log('Product added successfully');
         alert('Prodjct added successfully')
-        this.loadProducts();  // Reload products
-        this.resetProductForm(); // Reset form
+        this.loadProducts();  //reload products after new product is added
+        this.resetProductForm(); //form reset
       }).catch(error => {
         console.error('Error adding product: ', error);
       });
@@ -50,7 +50,7 @@ export class FeaturedProductsComponent {
     }
   }
   loadProducts() {
-    // Fetch products from Firestore
+    //fetch products from firestore
     this.productService.getProducts().subscribe(products => {
       this.products = products;
     });
@@ -88,9 +88,11 @@ export class FeaturedProductsComponent {
         this.closeModal(); // Close the modal after saving
       }).catch(error => {
         console.error('Error updating product: ', error);
+        alert('Error updating product')
       });
     } else {
       console.error('Invalid product data');
+      alert('Invalid product data')
     }
   }
 

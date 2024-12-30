@@ -49,9 +49,9 @@
       </form>
     </div>
 
-    <!-- Display Products -->
+    <!--displaying products -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Loop through products using ngFor -->
+      <!--loop through various products-->
       <div 
         *ngFor="let product of products" 
         class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
@@ -64,7 +64,7 @@
         <h3 class="text-2xl font-semibold mb-2 text-white">{{ product.name }}</h3>
         <p class="text-lg text-gray-400 mb-4">${{ product.price }}</p>
         
-        <!-- Buttons-->
+        <!--buttons-->
         <div class="mt-auto flex flex-col gap-2">
           <button 
             (click)="isAdmin ? editProduct(product) : openModal(product)" 
@@ -84,7 +84,7 @@
     </div>
   </div>
 
-  <!-- Edit Product Modal -->
+  <!--Edit product-->
   <div *ngIf="editedProduct" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" (click)="closeModal()">
     <div class="relative bg-gray-800 p-6 rounded-lg" (click)="$event.stopPropagation()"> 
       <button 
