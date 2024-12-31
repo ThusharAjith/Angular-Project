@@ -7,29 +7,39 @@
     <p class="mt-3 text-center text-lg text-gray-500">
       Various orders from users are shown here.
     </p>
+    <!-- Displaying part for the orders in Firestore -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Looping through various items placed by the users -->
+      <div
+        *ngFor="let order of orders"
+        class="bg-gray-800 p-6 mt-20 pb-20 rounded-lg flex-col flex-row relative">
+        <h4 class="text-lg font-medium text-white mb-2">Items:</h4>
+        <h3 class="text-2xl font-semibold mb-2 text-gray-400">
+          <span class="text-white">Timestamp:</span> {{order.timestamp}}
+        </h3>
+        <p class="text-lg text-white mb-4">Total Price: {{order.totalPrice}}</p>
+        <p class="text-lg text-gray-400 mb-4">User ID: {{order.userId}}</p>
+        <ul class="text-sm text-gray-500">
+          <li *ngFor="let item of order.items; index as i">
+            <div class="text-white">Product {{i+1}}</div>
+            Product ID: {{item.productId}} <br>
+            Product Name: {{item.name}} <br>
+            Product Price: {{item.price}}
+          </li>
+        </ul>
+        <div class="text-center mt-6">
+          <button (click)="deleteOrder(order.timestamp)" 
+            class="bg-blue-500 hover:bg-blue-400 text-white px-6
+            py-3 rounded-full text-lg font-semibold transition duration-300
+            absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            Order Satisfied
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="orders.length === 0" class="text-center text-gray-500">
+      No orders available.
+    </div>
   </div>
-</div>
-
-<!--displaying part for the prders in firestore-->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-  <!--looping through various items placed by the users-->
-  <div
-  *ngFor="let order of orders"
-  class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
-  <h4 class="text-lg font-medium text-white mb-2">Items:</h4>
-  <h3 class="text-2xl font-semibold mb-2 text-white">{{order.timestamp}}</h3>
-  <p class="text-lg text-gray-400 mb-4"> ${{order.totalPrice}}</p>
-  <p class="text-lg text-gray-400 mb-4"> {{order.userId}}</p>
-  <ul class="text-sm text-gray-500">
-    <li *ngFor="let item of order.items">
-      {{item.name}} - {{item.productId}} - {{item.price}}
-    </li>
-  </ul>
-
-
-  </div>
-</div>
-
-<div *ngIf="orders.length === 0" class="text-center text-gray-500">
-  No orders available.
 </div>
