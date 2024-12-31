@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';  // Ensure Firebase is initialized in your app
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,10 @@ export class ProductService {
       price: product.price,
       imageUrl: product.imageUrl,
     });
+  }
+
+  //fetch orders from firestore
+  getOrders(): Observable <Order[]> {
+    return this.firestore.collection<Order>('orders').valueChanges();
   }
 }
